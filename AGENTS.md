@@ -1,12 +1,8 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
-> For Mintlify product knowledge (components, configuration, writing standards),
-> install the Mintlify skill: `npx skills add https://mintlify.com/docs`
-
 # Documentation project instructions
 
 ## About this project
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
+- This is the documentation site for [Oack](https://oack.io), built on [Mintlify](https://mintlify.com)
 - Pages are MDX files with YAML frontmatter
 - Configuration lives in `docs.json`
 - Run `mint dev` to preview locally
@@ -14,20 +10,23 @@
 
 ## Terminology
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+- Use "monitor" not "check" or "health check"
+- Use "probe" for individual check results
+- Use "checker" for the monitoring agent (not "node" or "worker")
+- Use "alert channel" not "notification channel"
+- Use "team" not "workspace" or "project"
 
 ## Style preferences
-
-{/* Add any project-specific style rules below */}
 
 - Use active voice and second person ("you")
 - Keep sentences concise — one idea per sentence
 - Use sentence case for headings
 - Bold for UI elements: Click **Settings**
 - Code formatting for file names, commands, paths, and code references
+- Use Mintlify components (Card, CardGroup, Steps, Note, Tip, Warning, Accordion) where appropriate
 
 ## Content boundaries
 
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+- Document user-facing features only
+- Don't document internal admin or ops tooling
+- API details should reference the Swagger docs rather than duplicating endpoint specs

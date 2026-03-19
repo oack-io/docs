@@ -1,0 +1,42 @@
+---
+title: "Performance Percentiles"
+description: "Understand where each probe sits relative to historical performance with percent rank scoring."
+---
+
+When you open a probe's detail view, Oack computes a **percent rank** for each latency fraction — telling you where this probe sits relative to all successful probes for the same monitor.
+
+The score answers: *"what percentage of probes had an equal or lower value?"* A higher percentile means the probe was slower than most. A lower percentile means it was faster than most.
+
+## Reading the score
+
+| Percentile | Interpretation |
+|-----------|---------------|
+| 0 – 50 | Faster than average. This fraction performed better than at least half of all probes. |
+| 50 – 75 | Normal range. Slightly above median but within typical variance. |
+| 75 – 90 | Above average. This fraction was slower than most probes — worth noting but may not indicate a problem. |
+| 90 – 100 | Anomalous. This fraction was slower than 90%+ of probes. Likely indicates a real issue (congestion, DNS delay, slow backend, etc.). |
+
+## Latency fractions
+
+Percentiles are computed independently for each phase of the HTTP request:
+
+| Fraction | What it measures |
+|---------|-----------------|
+| `dns_ms` | DNS resolution time |
+| `connect_ms` | TCP connection establishment |
+| `tls_ms` | TLS handshake (null for plain HTTP) |
+| `send_ms` | Time to send the request |
+| `wait_ms` | Time to first byte (TTFB) — server processing time |
+| `receive_ms` | Time to download the response body |
+| `total_ms` | End-to-end request duration (sum of all fractions) |
+
+## Time windows
+
+Each fraction is ranked across four time windows to distinguish short-term spikes from long-term trends:
+
+- **1 day** — Detects recent anomalies. High percentile here but normal at 7d+ suggests a transient issue.
+- **7 days** — Weekly baseline. Accounts for day/night traffic patterns.
+- **30 days** — Monthly baseline. Smooths out weekly variance.
+- **90 days** — Long-term baseline. High percentile at 90d with normal 1d suggests the endpoint has improved over time.
+
+<Note>Only successful probes (HTTP status > 0, no error) are included in the percentile calculation. Fractions with a value of zero (e.g. `tls_ms` on plain HTTP) show null percentiles.</Note>

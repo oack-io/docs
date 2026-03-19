@@ -1,0 +1,13 @@
+---
+title: "SSL & Domain Expiration"
+description: "Automatic SSL certificate and domain registration expiration monitoring."
+---
+
+Oack automatically monitors SSL certificate and domain registration expiration for every active monitor. A daily sweep checks:
+
+- **SSL certificates** — TLS handshake reads the leaf certificate's expiration date.
+- **Domain registration** — RDAP protocol (the ICANN standard replacement for WHOIS) checks registration expiry.
+
+Notifications are sent through your linked alert channels at configurable thresholds (default: 30, 14, 7, and 1 days before expiration). Duplicate alerts are suppressed until the next threshold.
+
+<Note>Available on Pro and Business plans.</Note>

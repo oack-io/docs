@@ -1,0 +1,17 @@
+---
+title: "Alert Behavior"
+description: "How monitors trigger notifications on state changes."
+---
+
+Monitors notify only explicitly linked alert channels. If no channels are linked, the monitor stays silent. This gives you full control over which monitors trigger which notifications.
+
+## Alert events
+
+Alert events are dispatched on two transitions:
+
+- **DOWN** — Fired when the failure threshold is reached. Includes monitor URL, status code, and error details.
+- **Recovery** — Fired when the recovery threshold is reached. Includes downtime duration.
+
+## Delivery guarantees
+
+Failed deliveries are logged but never block monitoring or other channel deliveries.

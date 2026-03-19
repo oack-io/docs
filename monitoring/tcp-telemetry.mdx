@@ -1,0 +1,19 @@
+---
+title: "TCP Telemetry"
+description: "Kernel-level TCP_INFO metrics captured on every probe with zero overhead."
+---
+
+Every probe captures kernel-level [TCP_INFO](https://linuxgazette.net/136/pfeiffer.html) metrics with zero overhead. This gives you visibility into network behavior that HTTP-level monitoring alone can't provide:
+
+- **RTT (Round-Trip Time)** — Smoothed RTT and RTT variance as seen by the kernel.
+- **Retransmits** — Total retransmitted segments during the connection.
+- **Congestion window** — TCP congestion window size, indicating bandwidth capacity.
+- **Segment counters** — Segments sent and received during the exchange.
+
+## Rules of thumb
+
+| Signal | Meaning |
+|--------|---------|
+| Retransmits above zero | Packet loss on the path |
+| RTT variance much higher than smoothed RTT | Network jitter |
+| Small congestion window relative to expected bandwidth | Congestion or path issues |

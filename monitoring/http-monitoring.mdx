@@ -1,0 +1,13 @@
+---
+title: "HTTP Monitoring"
+description: "Deep HTTP/HTTPS monitoring with full timing breakdown, TCP metrics, and optional packet capture."
+---
+
+Each monitor performs an HTTP/HTTPS request to your endpoint at a configurable interval. Every probe captures:
+
+- **Full timing breakdown** — DNS lookup, TCP connect, TLS handshake, send, wait (TTFB), and receive phases.
+- **HTTP headers & body** — Request and response headers plus truncated body (1 KB) captured on every probe.
+- **TCP metrics** — Kernel-level [TCP_INFO](https://linuxgazette.net/136/pfeiffer.html) data including RTT, retransmits, congestion window, and segment counters.
+- **Packet capture** — Optional per-probe pcap of the full HTTP exchange (SYN to FIN) for deep post-mortem analysis.
+
+Monitors support custom HTTP methods (GET, POST, HEAD, etc.), custom headers, request body, and configurable timeouts. Check intervals range from 30 seconds (Business) to 5 minutes (Free).

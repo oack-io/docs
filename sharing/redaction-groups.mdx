@@ -1,0 +1,17 @@
+---
+title: "Redaction Groups"
+description: "Hide sensitive data from shared probe views with server-side redaction."
+---
+
+When creating a share link you can hide sensitive data from viewers. Redaction is applied server-side — redacted fields are stripped from API responses, not just hidden in the UI.
+
+## Available redaction groups
+
+| Redaction Group | Fields hidden |
+|----------------|---------------|
+| Monitor name | Monitor name is replaced with a generic label |
+| Checker IP | Checker public IP address |
+| Source ASN | Source AS number and network name |
+| HTTP bodies & auth | Request/response bodies and authorization headers |
+
+<Tip>Multiple redaction groups can be combined on a single share link.</Tip>

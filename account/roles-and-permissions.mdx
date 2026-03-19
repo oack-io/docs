@@ -1,0 +1,47 @@
+---
+title: "Roles & Permissions"
+description: "Account roles, team roles, and the full permissions matrix."
+---
+
+## Account roles
+
+Every user in an account has one of five roles. The role determines what the user can do across all teams that belong to the account.
+
+| Role | Description |
+|------|------------|
+| Owner | Full control over the account. Can manage subscription, transfer ownership, delete the account, and invite members. One owner per account. |
+| Admin | Can create and manage teams, monitors, and alert channels. Can invite and remove members. Cannot change subscription or delete the account. |
+| Billing Admin | Can view and manage subscription and billing. Has read-only access to teams and monitors. |
+| Member | Can create teams and monitors, manage alert channels, and invite team members. Standard role for active contributors. |
+| Guest | Read-only access. Can view teams, monitors, probes, and metrics but cannot create or modify anything. Default role for newly invited users. |
+
+<Note>Account owners and admins are automatically treated as admins in every team under the account, even if they are not explicitly added to those teams.</Note>
+
+## Team roles
+
+Teams have their own role system that controls access to monitors and alert channels within the team.
+
+| Role | Description |
+|------|------------|
+| Owner | Full control over the team. Can delete the team, transfer ownership, and move the team to a different account. |
+| Admin | Can create, update, and delete monitors and alert channels. Can invite and manage team members. |
+| Member | Can view all monitors, probes, and metrics. Can create share links and personal alert channels. Cannot create or modify monitors. |
+
+## Permissions summary
+
+The table below shows which actions require which minimum role.
+
+| Action | Minimum Account Role | Minimum Team Role |
+|--------|---------------------|-------------------|
+| View monitors & probes | Guest | Member |
+| View metrics & aggregation | Guest | Member |
+| Create share links | Member | Member |
+| Create/update/delete monitors | Member | Admin |
+| Manage alert channels | Member | Admin |
+| Create teams | Member | - |
+| Invite team members | Member | Admin |
+| Invite account members | Admin | - |
+| Move monitor to another team | Member | Admin (both teams) |
+| Move team to another account | Member (target) | Owner |
+| Manage subscription | Owner / Billing Admin | - |
+| Delete account | Owner | - |

@@ -1,0 +1,14 @@
+---
+title: "Uptime, MTBF & MTTR"
+description: "Reliability metrics computed from monitor status change history."
+---
+
+Oack computes three reliability metrics from monitor status change history:
+
+- **Uptime %** — Percentage of time the monitor was in the UP state within the selected window.
+- **MTBF** — Mean Time Between Failures. Average duration between consecutive DOWN incidents.
+- **MTTR** — Mean Time To Recovery. Average duration of DOWN incidents before recovery.
+
+## Time windows
+
+Metrics are available over 7-day, 30-day, 90-day, and 365-day windows. Paused or blocked periods are excluded from calculations.

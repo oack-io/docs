@@ -1,0 +1,24 @@
+---
+title: "Probe Aggregation"
+description: "Automatic time-bucket aggregation for long time ranges with statistical functions."
+---
+
+For time ranges longer than 12 hours, probes are automatically aggregated into time buckets using SQL-level statistical functions.
+
+## Aggregation functions
+
+Available functions: `avg`, `median`, `min`, `max`, `p75`, `p90`, `p95`, `p99`.
+
+## Bucket sizing
+
+Bucket size scales with range:
+
+| Time Range | Bucket Size |
+|-----------|-------------|
+| 12–24 hours | 5 minutes |
+| 24h – 7 days | 30 minutes |
+| 7 – 30 days | 2 hours |
+| 30 – 90 days | 6 hours |
+| 90+ days | 12 hours |
+
+Each bucket includes all six timing phases, probe count, and error count. Maximum 1,000 buckets per query.

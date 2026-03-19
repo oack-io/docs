@@ -1,0 +1,40 @@
+---
+title: "MCP (AI-Assisted Troubleshooting)"
+description: "Use AI agents like Claude to read and analyze your monitoring data via Model Context Protocol."
+---
+
+Oack exposes a [Model Context Protocol](https://modelcontextprotocol.io) server that lets AI agents (Claude Code, Claude Desktop, etc.) read your monitoring data. All MCP tools are read-only.
+
+## Available tools
+
+- Account & team navigation
+- Monitor listing, details, metrics, and expiration status
+- Probe listing, detail, and aggregation
+- Alert channels and events
+- Checker & geo information
+- Status overview, SLA reports, and incident lists
+
+## Setup
+
+Add to your Claude Code configuration:
+
+```json
+{
+  "mcpServers": {
+    "oack": {
+      "type": "http",
+      "url": "https://api.oack.io/mcp/"
+    }
+  }
+}
+```
+
+To allow Claude to use all Oack MCP tools without permission prompts:
+
+```bash
+/permissions add mcp__oack__* "allow all Oack MCP tools"
+```
+
+## Authorization
+
+Authorization uses OAuth 2.0 with PKCE. Access tokens are valid for 1 hour with 90-day refresh tokens. The transport is HTTP + SSE with JSON-RPC messaging.

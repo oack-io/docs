@@ -1,0 +1,25 @@
+---
+title: "Network Checker"
+description: "Deploy monitoring agents on your own infrastructure for private, geo-specific monitoring."
+---
+
+A network checker (also called a dedicated checker) is an agent that runs on your infrastructure, connects to Oack, and performs HTTP health checks against your monitors. This lets you monitor endpoints from inside your network, behind firewalls, or from specific geographic locations.
+
+## Checker modes
+
+<CardGroup cols={2}>
+  <Card title="Shared" icon="users">
+    Available to all accounts. Oack runs shared checkers in multiple regions.
+  </Card>
+  <Card title="Dedicated" icon="lock">
+    Private to your account. You deploy and manage the checker binary on your own servers.
+  </Card>
+</CardGroup>
+
+## Checker assignment
+
+Checker assignment supports:
+
+- **Pinning** — Assign a monitor to a specific checker.
+- **Geographic preferences** — Set country and macro-region preferences.
+- **Auto-failover** — If a checker goes offline, monitors are automatically reassigned to another available checker in the same region.

@@ -1,88 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "name": "Oack Docs",
   "theme": "mint",
-  "name": "Mint Starter Kit",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -91,32 +16,93 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@oack.io"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://app.oack.io"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/oack-io",
+      "linkedin": "https://linkedin.com/in/gregory-komissarov"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": ["index", "quickstart"]
+          },
+          {
+            "group": "Monitoring",
+            "pages": [
+              "monitoring/http-monitoring",
+              "monitoring/health-rules",
+              "monitoring/ssl-domain-expiration",
+              "monitoring/tcp-telemetry",
+              "monitoring/probe-aggregation",
+              "monitoring/performance-percentiles"
+            ]
+          },
+          {
+            "group": "Alerting",
+            "pages": ["alerting/channels", "alerting/behavior"]
+          },
+          {
+            "group": "Sharing & Analytics",
+            "pages": [
+              "sharing/probe-sharing",
+              "sharing/redaction-groups",
+              "analytics/reliability-metrics"
+            ]
+          },
+          {
+            "group": "Network Checker",
+            "pages": ["checker/overview", "checker/installation"]
+          },
+          {
+            "group": "Integrations",
+            "pages": ["integrations/mcp", "integrations/rest-api"]
+          },
+          {
+            "group": "Account",
+            "pages": ["account/roles-and-permissions", "account/plans"]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Website",
+          "href": "https://oack.io",
+          "icon": "globe"
+        },
+        {
+          "anchor": "Status",
+          "href": "https://self-status.oack.io",
+          "icon": "signal"
+        }
+      ]
     }
   }
 }

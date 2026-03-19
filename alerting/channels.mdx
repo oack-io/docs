@@ -1,0 +1,29 @@
+---
+title: "Alert Channels"
+description: "Supported notification channels and plan availability."
+---
+
+Alert channels define where notifications are sent when a monitor changes state.
+
+## Supported channels
+
+| Channel | Free | Pro | Business |
+|---------|------|-----|----------|
+| Email | Yes | Yes | Yes |
+| Slack | - | Yes | Yes |
+| Discord | - | Yes | Yes |
+| Telegram | - | Yes | Yes |
+| Webhooks | - | Yes | Yes |
+| PagerDuty | - | Yes | Yes |
+| SMS & Calls | - | - | Coming soon |
+
+## Channel details
+
+<AccordionGroup>
+  <Accordion title="Telegram">
+    Uses a one-click deep-link flow — no bot tokens or chat IDs to configure manually.
+  </Accordion>
+  <Accordion title="Webhooks">
+    Webhook payloads include HMAC signatures for verification.
+  </Accordion>
+</AccordionGroup>

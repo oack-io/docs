@@ -1,0 +1,12 @@
+---
+title: "Health Rules"
+description: "Define when a monitor is considered up or down with success criteria, failure thresholds, and recovery thresholds."
+---
+
+Health rules define when a monitor is considered up or down. Each monitor has:
+
+- **Success criteria** — Expected HTTP status codes (e.g. 200-299) and maximum latency threshold.
+- **Failure threshold** — Number of consecutive failing probes required before the monitor transitions from UP to DOWN.
+- **Recovery threshold** — Number of consecutive passing probes required before the monitor transitions from DOWN back to UP.
+
+A probe that exceeds the latency threshold or returns an unexpected status code counts as a failure. Probe-level errors (timeouts, DNS failures, connection refused) also count as failures.

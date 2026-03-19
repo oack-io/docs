@@ -1,0 +1,32 @@
+---
+title: "Checker Installation"
+description: "Install the network checker binary or Docker image on your infrastructure."
+---
+
+The checker binary supports Linux (amd64, arm64), macOS (Intel & Apple Silicon), and FreeBSD (amd64, arm64).
+
+## Binary install
+
+```bash
+curl -sSfL "https://raw.githubusercontent.com/oack-io/network-tester/refs/heads/main/install-network-tester.sh" | bash
+```
+
+Optional flags:
+- `--version VERSION` — Install a specific version
+- `--dir DIR` — Installation directory (default: `/usr/local/bin`)
+
+## Docker
+
+```bash
+docker pull oackio/network-tester:latest
+
+mkdir -p $HOME/.net-checker-data
+docker run --rm \
+    -v $HOME/.net-checker-data:/data \
+    oackio/network-tester:latest \
+    --token-db /data/tokens.db --mode shared
+```
+
+<Note>
+The checker is free to use. Pre-built binaries and Docker images are available on the [GitHub releases page](https://github.com/oack-io/network-tester/releases).
+</Note>
