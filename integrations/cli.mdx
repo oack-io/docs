@@ -1,0 +1,114 @@
+---
+title: "CLI (oackctl)"
+description: "Command-line interface for managing monitors, probes, alerts, and teams from the terminal."
+---
+
+`oackctl` is the official CLI for the Oack platform. It covers the full API surface — monitors, probes, alerts, teams, checkers, status pages, and more.
+
+<Note>Previously named `ttctl`. If you have `ttctl` installed, replace it with `oackctl`.</Note>
+
+## Install
+
+<Tabs>
+  <Tab title="Homebrew">
+    ```bash
+    brew tap oack-io/tap
+    brew install oackctl
+    ```
+  </Tab>
+  <Tab title="Shell script">
+    ```bash
+    curl -sSfL "https://raw.githubusercontent.com/oack-io/oackctl/refs/heads/main/install-oackctl.sh" | bash
+    ```
+
+    Install a specific version:
+    ```bash
+    curl -sSfL "https://raw.githubusercontent.com/oack-io/oackctl/refs/heads/main/install-oackctl.sh" | bash -s -- --version 0.3.2
+    ```
+
+    Install to a custom directory:
+    ```bash
+    curl -sSfL "https://raw.githubusercontent.com/oack-io/oackctl/refs/heads/main/install-oackctl.sh" | bash -s -- --dir ~/.local/bin
+    ```
+  </Tab>
+  <Tab title="Manual download">
+    Download from the [releases page](https://github.com/oack-io/oackctl/releases).
+
+    | OS | Arch | Download |
+    |----|------|----------|
+    | macOS | Apple Silicon | `oackctl_*_darwin_arm64.tar.gz` |
+    | macOS | Intel | `oackctl_*_darwin_amd64.tar.gz` |
+    | Linux | x86_64 | `oackctl_*_linux_amd64.tar.gz` |
+    | Linux | ARM64 | `oackctl_*_linux_arm64.tar.gz` |
+    | FreeBSD | x86_64 | `oackctl_*_freebsd_amd64.tar.gz` |
+    | FreeBSD | ARM64 | `oackctl_*_freebsd_arm64.tar.gz` |
+  </Tab>
+</Tabs>
+
+## Quick start
+
+```bash
+# Authenticate (opens browser for device flow)
+oackctl login --server-url https://api.oack.io
+
+# List your teams
+oackctl teams list
+
+# List monitors in a team
+oackctl monitors list --team <team-id>
+
+# Create a monitor
+oackctl monitors create --team <team-id> \
+  --name "Production API" \
+  --url "https://api.example.com/health" \
+  --interval 60
+
+# View probe results
+oackctl probes list --team <team-id> --monitor <monitor-id> --limit 10
+
+# Get probe details with performance percentiles
+oackctl probes details --team <team-id> --monitor <monitor-id> <probe-id>
+```
+
+## Command groups
+
+| Group | Commands |
+|-------|----------|
+| **Auth** | `login`, `logout`, `whoami`, `version` |
+| **Teams** | `list`, `get`, `create`, `update`, `delete` |
+| **Monitors** | `list`, `get`, `create`, `update`, `delete`, `pause`, `unpause`, `duplicate`, `move`, `test-alert` |
+| **Probes** | `list`, `get`, `create`, `update`, `delete`, `aggregate`, `details`, `pcap` |
+| **Checkers** | `list`, `get`, `rename`, `delete`, `assignments`, `set-teams`, `revoke`, `disconnect` |
+| **Alert channels** | `list`, `create`, `update`, `delete`, `test` |
+| **Monitor channels** | `list`, `set`, `add`, `remove` |
+| **Alerts** | `list` |
+| **Members** | `list`, `add`, `remove`, `set-role` |
+| **Invites** | `list`, `create`, `revoke`, `accept` |
+| **Shares** | `create`, `list`, `revoke` |
+| **Status pages** | `list`, `get`, `create`, `update`, `delete`, components, groups, incidents, maintenances, subscribers, watchdogs, templates |
+| **Geo** | `regions` |
+| **API keys** | `list`, `create`, `delete` |
+
+## Output formats
+
+```bash
+# Table output (default)
+oackctl teams list
+
+# JSON output
+oackctl teams list --json
+```
+
+## Configuration
+
+| Flag | Env var | Default | Description |
+|------|---------|---------|-------------|
+| `--server-url` | `TT_SERVER_URL` | `https://api.oack.io` | API base URL |
+| `--token` | `TT_TOKEN` | — | Static Bearer token (skips login) |
+| `--profile` | `TT_PROFILE` | `default` | Config profile name |
+| `--json` | — | `false` | JSON output |
+| `--verbose` | — | `false` | Print HTTP request/response details |
+
+## Source
+
+`oackctl` is open source (MIT). See the [GitHub repository](https://github.com/oack-io/oackctl).

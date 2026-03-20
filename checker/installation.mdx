@@ -1,11 +1,18 @@
 ---
 title: "Checker Installation"
-description: "Install the network checker binary or Docker image on your infrastructure."
+description: "Install the network checker via Homebrew, shell script, Docker, or manual download."
 ---
 
 The checker binary supports Linux (amd64, arm64), macOS (Intel & Apple Silicon), and FreeBSD (amd64, arm64).
 
-## Binary install
+## Homebrew (macOS / Linux)
+
+```bash
+brew tap oack-io/tap
+brew install network-tester
+```
+
+## Shell script
 
 ```bash
 curl -sSfL "https://raw.githubusercontent.com/oack-io/network-tester/refs/heads/main/install-network-tester.sh" | bash
@@ -22,11 +29,54 @@ docker pull oackio/network-tester:latest
 
 mkdir -p $HOME/.net-checker-data
 docker run --rm \
+    --cap-add NET_RAW \
     -v $HOME/.net-checker-data:/data \
     oackio/network-tester:latest \
     --token-db /data/tokens.db --mode shared
 ```
 
-<Note>
-The checker is free to use. Pre-built binaries and Docker images are available on the [GitHub releases page](https://github.com/oack-io/network-tester/releases).
-</Note>
+<Tip>The `--cap-add NET_RAW` flag enables traceroute support. Without it, the agent still runs HTTP probes normally — traceroute is silently skipped.</Tip>
+
+## Manual download
+
+Download the latest release from the [GitHub releases page](https://github.com/oack-io/network-tester/releases).
+
+| OS | Arch | Download |
+|----|------|----------|
+| Linux | x86_64 | `network-tester_*_linux_amd64.tar.gz` |
+| Linux | ARM64 | `network-tester_*_linux_arm64.tar.gz` |
+| macOS | Apple Silicon | `network-tester_*_darwin_arm64.tar.gz` |
+| macOS | Intel | `network-tester_*_darwin_amd64.tar.gz` |
+| FreeBSD | x86_64 | `network-tester_*_freebsd_amd64.tar.gz` |
+| FreeBSD | ARM64 | `network-tester_*_freebsd_arm64.tar.gz` |
+
+## Linux capabilities
+
+Traceroute requires raw ICMP sockets. Grant `CAP_NET_RAW` via one of:
+
+<Tabs>
+  <Tab title="systemd (recommended)">
+    ```ini
+    [Service]
+    AmbientCapabilities=CAP_NET_RAW
+    ```
+  </Tab>
+  <Tab title="setcap">
+    ```bash
+    sudo setcap cap_net_raw+ep /usr/local/bin/network-tester
+    ```
+  </Tab>
+  <Tab title="Docker">
+    ```bash
+    docker run --cap-add NET_RAW ...
+    ```
+  </Tab>
+</Tabs>
+
+## Supported platforms
+
+| OS | Architecture | Traceroute |
+|----|-------------|------------|
+| Linux | amd64, arm64 | ICMP + UDP fallback |
+| macOS | amd64 (Intel), arm64 (Apple Silicon) | Not supported |
+| FreeBSD | amd64, arm64 | Not supported |

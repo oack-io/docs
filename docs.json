@@ -81,7 +81,7 @@
           },
           {
             "group": "Integrations",
-            "pages": ["integrations/mcp", "integrations/rest-api"]
+            "pages": ["integrations/cli", "integrations/mcp", "integrations/rest-api"]
           },
           {
             "group": "Account",
